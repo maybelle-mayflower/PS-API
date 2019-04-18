@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PSAPI-Documentation</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
+      
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    
+</head> 
+
+<body class="body-green">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">PS</span><span class="text-bold">Api</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+
+                <div class="top-search-box">
+	                 <form class="form-inline search-form justify-content-center" action="" method="get">
+	            
+			            <input type="text" placeholder="Search..." name="search" class="form-control search-input">
+			            
+			            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+			            
+			        </form>
+                </div>
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Features</h1>
+                </div><!--//doc-header-->
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                           
+                            <section id="installation-section" class="doc-section">
+                                <h2 class="section-title">Movies</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">Fetch List</h3>
+                                    <p>
+                                        Returns a JSON response of all Star Wars movies, along with their opening crawls and anonymous comment counts. Movies are sorted by release date in ascending order.
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>End Point:</h6>
+                                        <p><code><a href="https://may-psapi.herokuapp.com/movies/list.php">https://may-psapi.herokuapp.com/movies/list.php</a></code></p>
+                                        
+                                        <h6>Sample Response:</h6>
+                                        <div class="language-php">
+                                        <pre style="align-self: left;"><code>{
+movies: 
+[
+    {
+        "title": "A New Hope",
+        "episode_id": 4,
+        "opening_crawl": "It is a period of civil war. Rebel....",
+        "release_date": "1977-05-25",
+        "comment_count": "2"
+    }
+]
+}</code></pre>
+                                    </div>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                
+                            </section><!--//Movies-section-->
+                            
+                            <section id="code-section" class="doc-section">
+                                <h2 class="section-title">Comments</h2>
+                                <div class="section-block">
+                                        <h3 class="block-title">Fetch List</h3>
+
+                                    <p>
+                                            Returns a JSON response of movie comments stored in a database. Comments are made anonymously but api will fetch user's ip address and date & time of posting.
+                                        </p>
+                                        <div class="code-block">
+                                                <h6>End Point:</h6>
+                                                <p><code><a href="https://may-psapi.herokuapp.com/comments/list.php">https://may-psapi.herokuapp.com/comments/list.php</a></code></p>
+                                               
+                                                <h6>Sample Response:</h6>
+                                                <div class="language-php">
+                                                <pre style="align-self: left;"><code>{
+"records": [
+    {
+        "film_name": "Attack of the Clones",
+        "comment": "Dummy comment 2",
+        "user_ip": "10.63.255.214",
+        "posted_at": "2019-04-18 14:40:35"
+    },
+    {
+        "film_name": "Return of the Jedi",
+        "comment": "this comment is from php input three",
+        "user_ip": "::1",
+        "posted_at": "2019-04-16 19:00:10"
+    }]
+}</code></pre>
+                                            </div>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <hr>
+                                <div class="section-block">
+                                        <h3 class="block-title">Add Comment</h3>
+
+                                    <p>
+                                            Allows user to create comments anonymously for any movie.
+                                        </p>
+                                        <p>Input requirements: </p>
+                                        <ul>
+                                            <li>Only movie Id and user comment allowed.</li>
+                                            <li>Comments are restricted to 500 characters.</li>
+                                            <li>Commenter's IP address will be stored</li>
+                                        </ul>
+                                        <p>Comment create can be tested using <a href="#">Postman</a> </p>
+                                        <div class="code-block">
+                                                <h6>End Point:</h6>
+                                                <p><code>https://may-psapi.herokuapp.com/comments/create.php</code></p>
+                                                
+                                                <h6>Sample Input:</h6>
+                                                <div class="language-php">
+                                                <pre style="align-self: left;"><code>
+{
+    "film_id":"5",
+    "comment":"Dummy comment 2"
+}
+                                                </code></pre>
+                                            </div>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                
+                               </section><!--//doc-section-->
+
+
+
+                               <section id="code-section" class="doc-section">
+                                <h2 class="section-title">Characters</h2>
+                                <div class="section-block">
+                                        <h3 class="block-title">Fetch List</h3>
+
+                                    <p>
+                                            Returns a JSON response of all characters in a specified star wars movie. Characters in a movie can be filtered by gender and sorted by permitted parameters.
+                                        </p>
+                                        <div class="code-block">
+                                                <h6>End Point: Base URL</h6>
+                                                <p><code><a href="https://may-psapi.herokuapp.com/characters/list.php">https://may-psapi.herokuapp.com/characters/list.php</a></code></p>
+                                                <p>Fetch all characters in the star wars universe. </p>
+                                               
+                                                <h6>Sample Response:</h6>
+                                                <div class="language-php">
+                                                <pre style="align-self: left;"><code>
+{
+    "count": 87,
+    "next": "https://swapi.co/api/people/?page=2",
+    "previous": null,
+    "results": [
+        {
+            "name": "Luke Skywalker",
+            "height": "172",
+            "mass": "77",
+            "hair_color": "blond",
+            "skin_color": "fair"...
+        }
+    }
+</code></pre>
+                                            </div>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <hr>
+                                <div class="section-block">
+                                        <h3 class="block-title">List characters for specific movie</h3>
+
+                                        <div class="code-block">
+                                                <h6>End Point:</h6>
+                                                <p><code><a href="https://may-psapi.herokuapp.com/characters/list.php?id=3">https://may-psapi.herokuapp.com/characters/list.php?id=3</a></code></p>
+                                                
+                                                <h6>Sample Response:</h6>
+                                                <div class="language-php">
+                                                <pre style="align-self: left;"><code>
+{
+    "title": "Return of the Jedi",
+    "film_id": "3",
+    "characters": [
+    {
+        "name": "Luke Skywalker",
+        "gender": "male",
+        "height": "172"
+    },
+    {
+        "name": "C-3PO",
+        "gender": "n/a",
+        "height": "167"
+    }]
+}          </code></pre>                             </div>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <hr>
+                                <div class="section-block">
+                                        <h3 class="block-title">Filter Characters</h3>
+                                        <p>Use predefined parameters to filter listed characters based on gender</p>
+                                        <p>Filters: </p>
+                                        <ul>
+                                            <li>Male</li>
+                                            <li>Female</li>
+                                            <li>Hermaphrodite</li>
+                                        </ul>
+                                        <p>Undefined parameters return characters with gender set as n/a</p>
+                                        <p>Response will include information about the total height of filtered characters in centimeters and inches</p>
+                                        <div class="code-block">
+                                                <h6>End Point:</h6>
+                                                <p><code><a href="https://may-psapi.herokuapp.com/characters/list.php?id=3&gender=female">https://may-psapi.herokuapp.com/characters/list.php?id=3&gender=female</a></code></p>
+                                                
+                                                <h6>Sample Response:</h6>
+                                                <div class="language-php">
+                                                <pre style="align-self: left;"><code>
+{
+    "characters": [
+        {
+            "name": "Leia Organa",
+            "gender": "female",
+            "height": "150"
+        },
+        {
+            "name": "Mon Mothma",
+            "gender": "female",
+            "height": "150"
+        }
+    ],
+    "Total Height": {
+        "cm": 300,
+        "feet": 9.8425196850393704
+    }
+}        </code></pre>                             </div>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                <hr>
+                                <div class="section-block">
+                                        <h3 class="block-title">Sort Characters</h3>
+                                        <p>Use predefined parameters to sort listed characters based on gender, name and height</p>
+                                        <p>Sort order must be specified as ascending or descending</p>
+
+                                        <p>Sort Parameters: </p>
+                                        <ul>
+                                            <li>gender</li>
+                                            <li>name</li>
+                                            <li>height</li>
+                                        </ul>
+                                        <p>Order Parameters: </p>
+                                        <ul>
+                                            <li>asc</li>
+                                            <li>desc</li>
+                                        </ul>
+                                        <div class="code-block">
+                                                <h6>End Point:</h6>
+                                                <p><code><a href="https://may-psapi.herokuapp.com/characters/list.php?id=3&sort=gender&order=asc">https://may-psapi.herokuapp.com/characters/list.php?id=3&sort=gender&order=asc</a></code></p>
+                                                <hr>
+                                            </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                
+                               </section><!--//doc-section-->
+                            
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <small class="copyright">All credits to respective owners</small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+
